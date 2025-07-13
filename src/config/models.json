@@ -1,0 +1,605 @@
+{
+  "profiles": {
+    "development": {
+      "defaultModel": "llama-3.1-8b-instant",
+      "maxTokens": 1000,
+      "temperature": 0.7,
+      "enableCaching": true,
+      "logLevel": "debug"
+    },
+    "production": {
+      "defaultModel": "llama-3.3-70b-versatile",
+      "maxTokens": 4000,
+      "temperature": 0.3,
+      "enableCaching": true,
+      "logLevel": "info"
+    },
+    "reasoning": {
+      "defaultModel": "deepseek-r1-distill-llama-70b",
+      "maxTokens": 8000,
+      "temperature": 0.1,
+      "enableCaching": true,
+      "logLevel": "info"
+    },
+    "testing": {
+      "defaultModel": "llama-3.1-8b-instant",
+      "maxTokens": 500,
+      "temperature": 0.1,
+      "enableCaching": false,
+      "logLevel": "warn"
+    }
+  },
+  "models": {
+    "llama-3.1-8b-instant": {
+      "name": "Llama 3.1 8B Instant",
+      "description": "Fastest model for quick responses",
+      "provider": "groq",
+      "capabilities": ["text-generation", "function-calling", "json-mode", "streaming"],
+      "contextLength": 8192,
+      "maxTokens": 8000,
+      "speedRating": 10,
+      "qualityRating": 7,
+      "costPer1kTokens": {
+        "input": 0.05,
+        "output": 0.08
+      },
+      "rateLimits": {
+        "requestsPerMinute": 30,
+        "tokensPerMinute": 30000
+      },
+      "useCases": ["rapid-prototyping", "simple-queries", "high-volume"],
+      "defaultParams": {
+        "temperature": 0.7,
+        "topP": 1.0,
+        "maxTokens": 1000
+      }
+    },
+    "llama-3.3-70b-versatile": {
+      "name": "Llama 3.3 70B Versatile",
+      "description": "Latest high-quality model for complex tasks",
+      "provider": "groq",
+      "capabilities": ["text-generation", "function-calling", "json-mode", "streaming"],
+      "contextLength": 32768,
+      "maxTokens": 8000,
+      "speedRating": 7,
+      "qualityRating": 9,
+      "costPer1kTokens": {
+        "input": 0.59,
+        "output": 0.79
+      },
+      "rateLimits": {
+        "requestsPerMinute": 30,
+        "tokensPerMinute": 6000
+      },
+      "useCases": ["complex-reasoning", "detailed-analysis", "creative-writing"],
+      "defaultParams": {
+        "temperature": 0.3,
+        "topP": 0.9,
+        "maxTokens": 4000
+      }
+    },
+    "deepseek-r1-distill-llama-70b": {
+      "name": "DeepSeek R1 Distilled 70B",
+      "description": "Advanced reasoning model with chain-of-thought capabilities",
+      "provider": "groq",
+      "capabilities": ["text-generation", "advanced-reasoning", "chain-of-thought", "json-mode"],
+      "contextLength": 32768,
+      "maxTokens": 8000,
+      "speedRating": 6,
+      "qualityRating": 10,
+      "costPer1kTokens": {
+        "input": 0.59,
+        "output": 0.79
+      },
+      "rateLimits": {
+        "requestsPerMinute": 20,
+        "tokensPerMinute": 6000
+      },
+      "useCases": ["complex-reasoning", "mathematical-problems", "logical-analysis", "research"],
+      "defaultParams": {
+        "temperature": 0.1,
+        "topP": 0.8,
+        "maxTokens": 8000
+      }
+    },
+    "qwen/qwen3-32b": {
+      "name": "Qwen3 32B",
+      "description": "Updated Qwen model with improved reasoning capabilities",
+      "provider": "groq",
+      "capabilities": ["text-generation", "function-calling", "json-mode", "reasoning"],
+      "contextLength": 32768,
+      "maxTokens": 8000,
+      "speedRating": 8,
+      "qualityRating": 9,
+      "costPer1kTokens": {
+        "input": 0.20,
+        "output": 0.20
+      },
+      "rateLimits": {
+        "requestsPerMinute": 30,
+        "tokensPerMinute": 6000
+      },
+      "useCases": ["general-reasoning", "multilingual-tasks", "code-generation"],
+      "defaultParams": {
+        "temperature": 0.3,
+        "topP": 0.9,
+        "maxTokens": 3000
+      }
+    },
+    "compound-beta": {
+      "name": "Compound Beta",
+      "description": "Experimental model with enhanced capabilities",
+      "provider": "groq",
+      "capabilities": ["text-generation", "advanced-reasoning", "experimental"],
+      "contextLength": 16384,
+      "maxTokens": 8000,
+      "speedRating": 7,
+      "qualityRating": 8,
+      "costPer1kTokens": {
+        "input": 0.30,
+        "output": 0.30
+      },
+      "rateLimits": {
+        "requestsPerMinute": 20,
+        "tokensPerMinute": 4000
+      },
+      "useCases": ["experimental-tasks", "research", "beta-testing"],
+      "defaultParams": {
+        "temperature": 0.5,
+        "topP": 0.9,
+        "maxTokens": 2000
+      }
+    },
+    "compound-beta-mini": {
+      "name": "Compound Beta Mini",
+      "description": "Smaller experimental model for quick testing.",
+      "provider": "groq",
+      "capabilities": ["text-generation", "experimental"],
+      "contextLength": 4096,
+      "maxTokens": 4000,
+      "speedRating": 9,
+      "qualityRating": 6,
+      "costPer1kTokens": {
+        "input": 0.10,
+        "output": 0.10
+      },
+      "rateLimits": {
+        "requestsPerMinute": 40,
+        "tokensPerMinute": 8000
+      },
+      "useCases": ["quick-tests", "small-tasks"],
+      "defaultParams": {
+        "temperature": 0.6,
+        "topP": 0.9,
+        "maxTokens": 1000
+      }
+    },
+    "allam-2-7b": {
+      "name": "Allam 2 7B",
+      "description": "General purpose LLM for diverse tasks.",
+      "provider": "groq",
+      "capabilities": ["text-generation", "multilingual"],
+      "contextLength": 4096,
+      "maxTokens": 4000,
+      "speedRating": 8,
+      "qualityRating": 7,
+      "costPer1kTokens": {
+        "input": 0.08,
+        "output": 0.10
+      },
+      "rateLimits": {
+        "requestsPerMinute": 35,
+        "tokensPerMinute": 25000
+      },
+      "useCases": ["general-chat", "content-creation"],
+      "defaultParams": {
+        "temperature": 0.7,
+        "topP": 1.0,
+        "maxTokens": 1000
+      }
+    },
+    "gemma2-9b-it": {
+      "name": "Gemma 2 9B IT",
+      "description": "Instruction-tuned model from Google, good for coding and reasoning.",
+      "provider": "groq",
+      "capabilities": ["text-generation", "coding", "reasoning"],
+      "contextLength": 8192,
+      "maxTokens": 8000,
+      "speedRating": 9,
+      "qualityRating": 8,
+      "costPer1kTokens": {
+        "input": 0.12,
+        "output": 0.15
+      },
+      "rateLimits": {
+        "requestsPerMinute": 30,
+        "tokensPerMinute": 15000
+      },
+      "useCases": ["coding-assistance", "complex-queries"],
+      "defaultParams": {
+        "temperature": 0.5,
+        "topP": 0.9,
+        "maxTokens": 2000
+      }
+    },
+    "llama3-70b-8192": {
+      "name": "Llama 3 70B 8192",
+      "description": "Original Llama 3 70B model with a 8K context window.",
+      "provider": "groq",
+      "capabilities": ["text-generation", "function-calling", "json-mode"],
+      "contextLength": 8192,
+      "maxTokens": 8000,
+      "speedRating": 7,
+      "qualityRating": 9,
+      "costPer1kTokens": {
+        "input": 0.59,
+        "output": 0.79
+      },
+      "rateLimits": {
+        "requestsPerMinute": 30,
+        "tokensPerMinute": 6000
+      },
+      "useCases": ["complex-reasoning", "detailed-analysis"],
+      "defaultParams": {
+        "temperature": 0.3,
+        "topP": 0.9,
+        "maxTokens": 4000
+      }
+    },
+    "llama3-8b-8192": {
+      "name": "Llama 3 8B 8192",
+      "description": "Original Llama 3 8B model with a 8K context window.",
+      "provider": "groq",
+      "capabilities": ["text-generation", "function-calling", "json-mode"],
+      "contextLength": 8192,
+      "maxTokens": 8000,
+      "speedRating": 10,
+      "qualityRating": 7,
+      "costPer1kTokens": {
+        "input": 0.05,
+        "output": 0.08
+      },
+      "rateLimits": {
+        "requestsPerMinute": 30,
+        "tokensPerMinute": 30000
+      },
+      "useCases": ["rapid-prototyping", "simple-queries"],
+      "defaultParams": {
+        "temperature": 0.7,
+        "topP": 1.0,
+        "maxTokens": 1000
+      }
+    },
+    "meta-llama/llama-guard-4-12b": {
+      "name": "Llama Guard 4 12B",
+      "description": "Safety model for content moderation.",
+      "provider": "groq",
+      "capabilities": ["content-moderation", "text-generation"],
+      "contextLength": 8192,
+      "maxTokens": 4000,
+      "speedRating": 8,
+      "qualityRating": 9,
+      "costPer1kTokens": {
+        "input": 0.08,
+        "output": 0.08
+      },
+      "rateLimits": {
+        "requestsPerMinute": 30,
+        "tokensPerMinute": 10000
+      },
+      "useCases": ["safety-filtering", "harmful-content-detection"],
+      "defaultParams": {
+        "temperature": 0,
+        "topP": 0,
+        "maxTokens": 500
+      }
+    },
+    "meta-llama/llama-prompt-guard-2-22m": {
+      "name": "Llama Prompt Guard 22M",
+      "description": "Smaller prompt guard model for fast safety checks.",
+      "provider": "groq",
+      "capabilities": ["content-moderation", "prompt-guard"],
+      "contextLength": 2048,
+      "maxTokens": 500,
+      "speedRating": 10,
+      "qualityRating": 7,
+      "costPer1kTokens": {
+        "input": 0.02,
+        "output": 0.02
+      },
+      "rateLimits": {
+        "requestsPerMinute": 50,
+        "tokensPerMinute": 20000
+      },
+      "useCases": ["fast-prompt-filtering", "lightweight-safety"],
+      "defaultParams": {
+        "temperature": 0,
+        "topP": 0,
+        "maxTokens": 200
+      }
+    },
+    "meta-llama/llama-prompt-guard-2-86m": {
+      "name": "Llama Prompt Guard 86M",
+      "description": "Larger prompt guard model for comprehensive safety checks.",
+      "provider": "groq",
+      "capabilities": ["content-moderation", "prompt-guard"],
+      "contextLength": 4096,
+      "maxTokens": 1000,
+      "speedRating": 9,
+      "qualityRating": 8,
+      "costPer1kTokens": {
+        "input": 0.04,
+        "output": 0.04
+      },
+      "rateLimits": {
+        "requestsPerMinute": 40,
+        "tokensPerMinute": 15000
+      },
+      "useCases": ["comprehensive-prompt-filtering", "robust-safety"],
+      "defaultParams": {
+        "temperature": 0,
+        "topP": 0,
+        "maxTokens": 500
+      }
+    },
+    "mistral-saba-24b": {
+      "name": "Mistral Saba 24B",
+      "description": "Mistral model for balanced performance across tasks.",
+      "provider": "groq",
+      "capabilities": ["text-generation", "function-calling", "multilingual"],
+      "contextLength": 16384,
+      "maxTokens": 8000,
+      "speedRating": 8,
+      "qualityRating": 8,
+      "costPer1kTokens": {
+        "input": 0.25,
+        "output": 0.25
+      },
+      "rateLimits": {
+        "requestsPerMinute": 30,
+        "tokensPerMinute": 10000
+      },
+      "useCases": ["general-purpose", "multilingual-applications"],
+      "defaultParams": {
+        "temperature": 0.7,
+        "topP": 0.9,
+        "maxTokens": 2000
+      }
+    },
+    "qwen-qwq-32b": {
+      "name": "Qwen QwQ 32B",
+      "description": "Specialized model for mathematical reasoning and problem-solving",
+      "provider": "groq",
+      "capabilities": ["text-generation", "mathematical-reasoning", "problem-solving", "json-mode"],
+      "contextLength": 32768,
+      "maxTokens": 8000,
+      "speedRating": 8,
+      "qualityRating": 9,
+      "costPer1kTokens": {
+        "input": 0.20,
+        "output": 0.20
+      },
+      "rateLimits": {
+        "requestsPerMinute": 30,
+        "tokensPerMinute": 6000
+      },
+      "useCases": ["mathematical-reasoning", "quantitative-analysis", "scientific-computing"],
+      "defaultParams": {
+        "temperature": 0.1,
+        "topP": 0.8,
+        "maxTokens": 3000
+      }
+    },
+    "meta-llama/llama-4-maverick-17b-128e-instruct": {
+      "name": "Llama 4 Maverick 17B",
+      "description": "Advanced multimodal model for complex vision and reasoning tasks",
+      "provider": "groq",
+      "capabilities": ["text-generation", "vision", "multimodal", "advanced-reasoning"],
+      "contextLength": 8192,
+      "maxTokens": 4000,
+      "speedRating": 7,
+      "qualityRating": 10,
+      "costPer1kTokens": {
+        "input": 0.18,
+        "output": 0.18
+      },
+      "rateLimits": {
+        "requestsPerMinute": 30,
+        "tokensPerMinute": 6000
+      },
+      "useCases": ["complex-image-analysis", "technical-vision", "multimodal-reasoning"],
+      "defaultParams": {
+        "temperature": 0.1,
+        "topP": 0.8,
+        "maxTokens": 3000
+      }
+    },
+    "meta-llama/llama-4-scout-17b-16e-instruct": {
+      "name": "Llama 4 Scout 17B",
+      "description": "Multimodal model optimized for general vision tasks",
+      "provider": "groq",
+      "capabilities": ["text-generation", "vision", "multimodal"],
+      "contextLength": 8192,
+      "maxTokens": 4000,
+      "speedRating": 8,
+      "qualityRating": 9,
+      "costPer1kTokens": {
+        "input": 0.18,
+        "output": 0.18
+      },
+      "rateLimits": {
+        "requestsPerMinute": 30,
+        "tokensPerMinute": 6000
+      },
+      "useCases": ["image-analysis", "visual-qa", "general-multimodal"],
+      "defaultParams": {
+        "temperature": 0.3,
+        "topP": 0.9,
+        "maxTokens": 2000
+      }
+    },
+    "whisper-large-v3": {
+      "name": "Whisper Large V3",
+      "description": "High-quality speech recognition model",
+      "provider": "groq",
+      "capabilities": ["audio-transcription", "audio-translation"],
+      "contextLength": 0,
+      "maxTokens": 0,
+      "speedRating": 6,
+      "qualityRating": 10,
+      "costPer1kTokens": {
+        "input": 0.111,
+        "output": 0
+      },
+      "rateLimits": {
+        "requestsPerMinute": 20,
+        "tokensPerMinute": 0
+      },
+      "useCases": ["high-accuracy-transcription", "multilingual-audio", "production-quality"],
+      "defaultParams": {
+        "temperature": 0,
+        "responseFormat": "json"
+      }
+    },
+    "whisper-large-v3-turbo": {
+      "name": "Whisper Large V3 Turbo",
+      "description": "Fast speech recognition model",
+      "provider": "groq",
+      "capabilities": ["audio-transcription", "audio-translation"],
+      "contextLength": 0,
+      "maxTokens": 0,
+      "speedRating": 9,
+      "qualityRating": 8,
+      "costPer1kTokens": {
+        "input": 0.04,
+        "output": 0
+      },
+      "rateLimits": {
+        "requestsPerMinute": 30,
+        "tokensPerMinute": 0
+      },
+      "useCases": ["real-time-transcription", "fast-processing", "cost-effective"],
+      "defaultParams": {
+        "temperature": 0,
+        "responseFormat": "json"
+      }
+    },
+    "distil-whisper-large-v3-en": {
+      "name": "Distil Whisper Large V3 English",
+      "description": "Distilled Whisper model optimized for English speech recognition, faster.",
+      "provider": "groq",
+      "capabilities": ["audio-transcription"],
+      "contextLength": 0,
+      "maxTokens": 0,
+      "speedRating": 10,
+      "qualityRating": 8,
+      "costPer1kTokens": {
+        "input": 0.02,
+        "output": 0
+      },
+      "rateLimits": {
+        "requestsPerMinute": 40,
+        "tokensPerMinute": 0
+      },
+      "useCases": ["fast-english-transcription", "cost-effective-english"],
+      "defaultParams": {
+        "temperature": 0,
+        "responseFormat": "json"
+      }
+    },
+    "playai-tts": {
+      "name": "PlayAI TTS",
+      "description": "High-quality text-to-speech synthesis.",
+      "provider": "groq",
+      "capabilities": ["text-to-speech"],
+      "contextLength": 0,
+      "maxTokens": 0,
+      "speedRating": 8,
+      "qualityRating": 9,
+      "costPer1kTokens": {
+        "input": 0.015,
+        "output": 0.015
+      },
+      "rateLimits": {
+        "requestsPerMinute": 50,
+        "tokensPerMinute": 0
+      },
+      "useCases": ["general-text-to-speech", "voice-synthesis"],
+      "defaultParams": {
+        "voice": "default"
+      }
+    },
+    "playai-tts-arabic": {
+      "name": "PlayAI TTS Arabic",
+      "description": "High-quality text-to-speech synthesis for Arabic.",
+      "provider": "groq",
+      "capabilities": ["text-to-speech", "multilingual"],
+      "contextLength": 0,
+      "maxTokens": 0,
+      "speedRating": 8,
+      "qualityRating": 9,
+      "costPer1kTokens": {
+        "input": 0.02,
+        "output": 0.02
+      },
+      "rateLimits": {
+        "requestsPerMinute": 50,
+        "tokensPerMinute": 0
+      },
+      "useCases": ["arabic-text-to-speech", "voice-synthesis"],
+      "defaultParams": {
+        "voice": "arabic_default"
+      }
+    }
+  },
+  "modelSelectionRules": {
+    "textCompletion": {
+      "speed": "llama-3.1-8b-instant",
+      "quality": "llama-3.3-70b-versatile",
+      "cost": "llama-3.1-8b-instant",
+      "reasoning": "deepseek-r1-distill-llama-70b",
+      "mathematical": "qwen-qwq-32b",
+      "multilingual": "allam-2-7b"
+    },
+    "audioTranscription": {
+      "fast": "whisper-large-v3-turbo",
+      "accurate": "whisper-large-v3",
+      "english-optimized": "distil-whisper-large-v3-en"
+    },
+    "visionAnalysis": {
+      "general": "meta-llama/llama-4-scout-17b-16e-instruct",
+      "technical": "meta-llama/llama-4-maverick-17b-128e-instruct"
+    },
+    "textToSpeech": {
+      "default": "playai-tts",
+      "arabic": "playai-tts-arabic"
+    }
+  },
+  "complexityThresholds": {
+    "simple": {
+      "maxTokens": 100,
+      "keywords": ["what", "when", "where", "who"],
+      "model": "llama-3.1-8b-instant"
+    },
+    "moderate": {
+      "maxTokens": 500,
+      "keywords": ["explain", "describe", "how"],
+      "model": "qwen/qwen3-32b"
+    },
+    "complex": {
+      "maxTokens": 1000,
+      "keywords": ["analyze", "compare", "evaluate", "comprehensive"],
+      "model": "llama-3.3-70b-versatile"
+    },
+    "reasoning": {
+      "maxTokens": 2000,
+      "keywords": ["solve", "calculate", "prove", "logic", "mathematical"],
+      "model": "deepseek-r1-distill-llama-70b"
+    },
+    "mathematical": {
+      "maxTokens": 3000,
+      "keywords": ["math", "equation", "formula", "calculation", "quantitative"],
+      "model": "qwen-qwq-32b"
+    }
+  }
+}

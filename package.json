@@ -1,0 +1,40 @@
+{
+  "name": "groq-mcp-server",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Intelligent MCP server for Groq API integration",
+  "main": "dist/server.js",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc",
+    "start": "cross-env NO_COLOR=1 node dist/server.js",
+    "test": "jest",
+    "lint": "eslint src/**/*.ts",
+    "package": "ncc build dist/server.js -o build/"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "dayjs": "^1.11.10",
+    "node-cache": "^5.1.2",
+    "rate-limiter-flexible": "^3.0.0",
+    "uuid": "^9.0.1",
+    "winston": "^3.11.0",
+    "zod": "^3.22.0",
+    "zod-to-json-schema": "^3.24.5"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.3",
+    "@types/jest": "^29.0.0",
+    "@types/node": "^20.19.0",
+    "@types/uuid": "^9.0.0",
+    "@vercel/ncc": "^0.38.0",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.5.0",
+    "groq-sdk": "^0.25.0",
+    "jest": "^29.0.0",
+    "nodemon": "^3.1.10",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.0.0",
+    "typescript": "^5.8.3"
+  }
+}
